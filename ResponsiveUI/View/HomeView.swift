@@ -10,7 +10,9 @@ import SwiftUI
 struct HomeView: View {
     
     var body: some View {
-        Text("Hello, World!")
+        ResponsiveView { properties in
+            Text(properties.isLandscape ? "Landscape" : "Portrait")
+        }
     }
 }
 
