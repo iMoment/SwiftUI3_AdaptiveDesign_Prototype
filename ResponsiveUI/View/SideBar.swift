@@ -21,6 +21,7 @@ struct SideBar: View {
                     .frame(width: 50, height: 50)
                 
                 SidebarButton(icon: "tray.and.arrow.down.fill", title: "Inbox")
+                    .padding(.top, 40)
                 
                 SidebarButton(icon: "paperplane", title: "Sent")
                 
@@ -30,6 +31,12 @@ struct SideBar: View {
             }
             .padding()
         }
+        // MAX SIZE
+        .frame(width: (properties.isLandscape ? properties.size.width : properties.size.height) / 4 > 300 ? 300 : (properties.isLandscape ? properties.size.width : properties.size.height) / 4)
+        .background {
+            Color("lightWhite")
+                .ignoresSafeArea()
+        }
     }
     
     // MARK: SideBar Buttons
@@ -38,8 +45,16 @@ struct SideBar: View {
         Button {
             currentMenu = title
         } label: {
+            
             VStack {
+                
                 HStack(spacing: 10) {
+                    
+                    Image(systemName: "chevron.right")
+                        .font(.caption)
+                        .foregroundColor(Color.black)
+                        .opacity(currentMenu == title ? 1 : 0)
+                    
                     Image(systemName: icon)
                         .font(.callout)
                         .foregroundColor(currentMenu == title ? Color("darkBlue") : Color.gray)
