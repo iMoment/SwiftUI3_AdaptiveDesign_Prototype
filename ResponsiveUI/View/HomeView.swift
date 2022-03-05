@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State var currentMenu: String = "Inbox"
     
     var body: some View {
         ResponsiveView { properties in
-            Text(properties.isLandscape ? "Landscape" : "Portrait")
+//            Text(properties.isLandscape ? "Landscape" : "Portrait")
+            HStack(spacing: 0) {
+                SideBar(currentMenu: $currentMenu, properties: properties)
+            }
         }
     }
 }
